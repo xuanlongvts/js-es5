@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enumeratin Properties</title>
+</head>
+<body>
+<h1>Enumerating properties</h1>
+<script language="javascript">
+    var o = {
+        x: 1,
+        y: 2,
+        z: 3
+    };
+    console.log(o.propertyIsEnumerable("toString"));
+
+    for(p in o){
+        console.log(p);
+    };
+
+    for(p in o){
+        if(!o.hasOwnProperty(p)) continue;  // skip inherited properties
+    }
+
+    for(p in o){
+        if(typeof o[p] == "function") continue; // skip methods
+    }
+</script>
+</body>
+</html>

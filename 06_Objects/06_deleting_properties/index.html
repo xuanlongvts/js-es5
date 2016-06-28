@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deleting properties</title>
+</head>
+<body>
+<h1>Deleting properties</h1>
+<script language="javascript">
+    var book = {
+        'mainTitle' : "Javascript",
+        'subTitle'  : "The Definitive guide",
+        'for'       : "All audiences",
+        'author'    : {
+            firstName   : 'David',
+            surName     : 'Flanagan'
+        }
+    };
+
+    console.log("Truoc khi xoa: " + book.mainTitle);
+    delete book.mainTitle;
+    console.log("Sau khi xoa: "+ book.mainTitle);
+
+    var x = 1;
+    delete this.x; // Can not delete X
+    console.log("x = " + x);
+    function f(){};
+    delete this.f; // Can not delete this property either
+
+    this.y = 1;
+    //delete y;
+    console.log('y = ' + y);
+
+    function inherit(p){
+        function f(){};
+        f.prototype = p;
+        return new f();
+    }
+
+    var o = {
+        x: 1,
+        y: 2
+    };
+
+    var b = inherit(o);
+    b.z = 3;
+    b.r =4;
+
+    console.log("x of b = " + b.x + ", y of b = " + b.y);
+    console.log("z of b = " + b.z + ", r of b = " + b.r);
+
+    delete b.x;
+    delete b.y;
+    console.log("x of b = " + b.x + ", y of b = " + b.y);
+
+    delete b.z;
+    delete b.r;
+    console.log("z of b = " + b.z + ", r of b = " + b.r);
+
+
+</script>
+</body>
+</html>

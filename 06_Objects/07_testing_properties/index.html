@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing properties</title>
+</head>
+<body>
+<h1>Testing properties</h1>
+<script language="javascript">
+    var o  = { x: 1};    ;
+    console.log("x" in o);
+    console.log("y" in o);
+    console.log("toString" in o);
+
+    console.log("oooooooooooo");
+    console.log(o.hasOwnProperty("x"));
+    console.log(o.hasOwnProperty("y"));
+    console.log(o.hasOwnProperty("toString"));
+
+
+    function inherit(p){
+        function f(){};
+        f.prototype = p;
+        return new f();
+    }
+
+    var aa = inherit({y:2});
+    aa.x = 1;
+    console.log("aaaaaaaa");
+    console.log(aa.propertyIsEnumerable("x"));
+    console.log(aa.propertyIsEnumerable("y"));
+    console.log(Object.prototype.propertyIsEnumerable("toString"));
+
+    console.log("bbbbbbbbbb");
+    var bb = {x:1};
+    console.log(bb.x !== undefined);
+    console.log(bb.y !== undefined);
+    console.log(bb.toString !== undefined);
+
+    console.log("ccccccc");
+    var cc = {x:undefined};
+    console.log(cc.x !== undefined);
+    console.log(cc.y !== undefined);
+    console.log("x" in cc);
+    console.log("y" in cc);
+    delete cc.x;
+    console.log("x" in cc);
+
+    console.log("==== null and undefined");
+    console.log(null == undefined);
+    console.log(null === undefined);
+
+</script>
+</body>
+</html>

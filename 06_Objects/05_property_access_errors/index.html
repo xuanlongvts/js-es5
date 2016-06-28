@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property Access Errors</title>
+</head>
+<body>
+<h1>Property Access Errors</h1>
+<script language="javascript">
+    var book = {
+        'mainTitle' : "Javascript",
+        'subTitle'  : "The Definitive guide",
+        'for'       : "All audiences",
+        'author'    : {
+            firstName   : 'David',
+            surName     : 'Flanagan'
+        }
+    };
+
+    var title = book.title;
+    console.log(title);  // undefined
+
+    var len = book && book.subTitle && book.subTitle.length;
+
+    console.log('len = ' + len);
+</script>
+</body>
+</html>

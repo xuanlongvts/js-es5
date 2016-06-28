@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.create()</title>
+</head>
+<body>
+<h1>Object.create()</h1>
+<script language="JavaScript">
+    var obj1 = Object.create({x:1, y:2});
+    var obj2 = Object.create(null);
+    var obj3 = Object.create(Object.prototype);
+
+    console.log("obj 1 = " + obj1);
+    console.log("obj 2 = " + obj2);
+	console.log("obj 3 = " + obj3);
+
+	function inherit(p){
+		if(p === null) throw TypeError("Null");
+		if(Object.create)
+			return Object.create(p);
+		var t = typeof p;
+		if(t !== "Object" && t!== "function") throw TypeError();
+		function f(){};
+		f.prototype = p;
+		return new f();
+	}
+
+	//inherit(obj1);
+</script>
+</body>
+</html>

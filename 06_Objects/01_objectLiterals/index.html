@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object Literals</title>
+</head>
+<body>
+<h1>Object Literals</h1>
+<script language="JavaScript">
+    var empty = {};
+    var point = {
+        x: 0,
+        y: 1
+    };
+    var point2 = {
+        x: point.x,
+        y: point.y + 1
+    };
+    var book = {
+        'mainTitle' : "Javascript",
+        'subTitle'  : "The Definitive guide",
+        'for'       : "All audiences",
+        'author'    : {
+            firstName   : 'David',
+            surName     : 'Flanagan'
+        }
+    };
+
+    console.log("point x = " + point.x + ", point y = " + point.y);
+    console.log("point2 x = " + point2.x + ", point2 y = " + point2.y);
+    console.log("book mainTitle = " + book.mainTitle + ", book subTitle = " + book.subTitle + ", book for = " + book.for + ", book firstName = " + book.author.firstName + ", book surName = " + book.author.surName);
+
+    console.log("=======");
+    console.log("Access Object: " + book["for"]);
+</script>
+</body>
+</html>

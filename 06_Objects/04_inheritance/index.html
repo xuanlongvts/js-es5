@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inheriance</title>
+</head>
+<body>
+<h1>Inheritance</h1>
+<script language="javascript">
+    function inherit(p){
+        if(p === null) throw TypeError("Null");
+        if(Object.create) {
+            return Object.create(p);
+            console.log('111111');
+        }
+        var t = typeof p;
+        if(t !== "Object" && t!== "function") throw TypeError("Not object && function");
+        function f(){};
+        f.prototype = p;
+        return new f();
+    }
+
+    var o = {};
+    o.x = 1;
+    var p = inherit(o);
+    p.y = 2;
+    var q = inherit(p);
+    q.z = 3;
+    var s = q.toString();
+    var result = q.x + q.y;
+    console.log('Result = ' + result);
+
+    var unitcircle = {
+        r: 1
+    };
+    var c = inherit(unitcircle);
+    c.x = 1;
+    c.y = 1;
+    c.r = 2;
+
+    console.log("UnitCircle = " + unitcircle.r);
+    console.log("c.r = " + c.r);
+</script>
+</body>
+</html>
