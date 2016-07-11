@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enumerating Properties</title>
+</head>
+<body>
+<h1>Enumerating properties</h1>
+<script language="javascript">
+    var aaa = {
+        a: 1,
+        b: 2,
+        c: 3,
+        d: 4
+    };
+
+    var bbb = {
+        e: 5,
+        f: 6,
+        g: 7,
+        h: 8
+    };
+
+    var ccc = {
+        d: 9,
+        h: 10,
+        i: 11,
+        j: 12
+    };
+
+    /*function extend(a,b) {
+        for(prop in b){
+            a[prop] = b[prop];
+        }
+        return a;
+    }
+    extend(aaa, bbb);
+    console.log(aaa);*/
+
+    function merge(a, b) {
+        for(prop in b){
+            if(a.hasOwnProperty(prop)) continue; // Ngoai tru nhung thuoc tinh co trong a thi tiep tuc
+            a[prop] = b[prop];
+        }
+        return a;
+    }
+    merge(bbb,ccc);
+    console.log(bbb);
+
+</script>
+</body>
+</html>
