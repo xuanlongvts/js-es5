@@ -28,24 +28,85 @@
         j: 12
     };
 
-    /*function extend(a,b) {
-        for(prop in b){
+    function extend(a,b) {
+        for(var prop in b){
             a[prop] = b[prop];
         }
         return a;
     }
-    extend(aaa, bbb);
+    /*extend(aaa, ccc);
     console.log(aaa);*/
 
     function merge(a, b) {
-        for(prop in b){
+        for(var prop in b){
             if(a.hasOwnProperty(prop)) continue; // Ngoai tru nhung thuoc tinh co trong a thi tiep tuc
             a[prop] = b[prop];
         }
         return a;
     }
-    merge(bbb,ccc);
-    console.log(bbb);
+    /*merge(bbb,ccc);
+    console.log(bbb);*/
+
+    function restrict(a,b) {
+        for(var prop in a){
+            if(!(prop in b)){
+                delete a[prop];
+            }
+        }
+        return a;
+    }
+    /*restrict(aaa,ccc);
+    console.log(aaa);*/
+
+    function subtract(a, b) {
+        for(var prop in b){
+            delete a[prop];
+        }
+        return a;
+    }
+    /*subtract(bbb, ccc);
+    console.log(bbb);*/
+
+    function union(a,b) {
+        return extend(extend({},a), b);
+    }
+    /*console.log(union(aaa, ccc));*/
+
+    function intersection(a, b) {
+        return restrict(extend({},a), b);
+    }
+    /*console.log(intersection(aaa,ccc));*/
+
+    function inherit(p){
+        if(p === null) throw TypeError("Null");
+        if(Object.create) {
+            return Object.create(p);
+            console.log('111111');
+        }
+        var t = typeof p;
+        if(t !== "Object" && t!== "function") throw TypeError("Not object && function");
+        function f(){};
+        f.prototype = p;
+        return new f();
+    }
+
+    var objData = inherit(aaa);
+    objData.x = 10;
+    objData.y = 20;
+    objData.z = "text";
+
+    function keys(a) {
+        if(typeof a !== "object") throw TypeError("Khong phai object");
+        var result = [];
+        for(var prop in a){
+            if(a.hasOwnProperty(prop)){
+                result.push(prop);
+            }
+        }
+        return result;
+    }
+    console.log(objData.a);
+    console.log(keys(objData));
 
 </script>
 </body>
