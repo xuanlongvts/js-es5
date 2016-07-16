@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Getters and Setter</title>
+</head>
+<body>
+<h1>Getters and Setters</h1>
+<script language="javascript">
+    function inherit(p){
+        if(p === null) throw TypeError("Null");
+        if(Object.create) {
+            return Object.create(p);
+        }
+        var t = typeof p;
+        if(t !== "Object" && t!== "function") throw TypeError("Not object && function");
+        function f(){};
+        f.prototype = p;
+        return new f();
+    }
+
+    var p = {
+        x: 1.0,
+        y: 1.0,
+        get r(){
+            return Math.sqrt(this.x * this.x + this.y * this.y)
+        },
+        set r(newvalue){
+            var oldvalue = Math.sqrt(this.x * this.x + this.y * this.y);
+            var ratio = newvalue/oldvalue;
+
+            this.x *= ratio;
+            this.y *= ratio;
+        },
+        get theta(){
+            return Math.atan2(this.y, this.x)
+        }
+    };
+
+    var q = inherit(p);
+    q.x = 4;
+    q.y = 2;
+    console.log(q.r);
+    console.log(q.theta);
+
+    var serialnum = {
+        $n: 0,
+        get next(){
+            console.log('Get Get Get');
+            return this.$n++;
+        },
+        set next(n){
+            console.log('Set set set');
+            if(n >= this.$n){
+                this.$n = n;
+            }
+            else throw "Serial number can only be set to a larger value";
+        }
+    };
+    console.log('============');
+    console.log('$n: ' + serialnum.$n);
+    //serialnum.next = -3; // Goi set next;
+    serialnum.next = 3;
+    console.log(serialnum.next); // Goi get next
+
+    var circle = {
+        radius: 1,
+        get diameter(){
+            return this.radius * 2;
+        },
+        set diameter(value){
+            this.radius = value/2;
+        }
+    };
+    console.log('==============');
+    console.log(circle.radius); // Goi toi thuoc tinh radius
+    circle.diameter = 5;  // Goi toi set diameter
+    console.log(circle.diameter);  // Goi toi get diameter
+</script>
+</body>
+</html>
