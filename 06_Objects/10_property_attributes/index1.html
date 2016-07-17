@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property attribute</title>
+</head>
+<body>
+<h1>Property attribute</h1>
+<script language="javascript">
+    var o = {};
+    Object.defineProperty(o, "x", {
+        value: 1,
+        writable: true,
+        enumerable: false,
+        configurable: true
+    });
+    console.log(o.x);
+    console.log(Object.keys(o));
+
+    Object.defineProperty(o, "x", {
+        writable: false
+    });
+    console.log(o.x = 2);
+    console.log(o.x);
+    console.log('==============');
+
+    Object.defineProperty(o, "x", {
+        value: 2
+    });
+    console.log(o.x);
+
+    Object.defineProperty(o, "x", {
+        get: function () {
+            return 0;
+        }
+    });
+    console.log(o.x);
+
+    var p = Object.defineProperties({}, {
+        x: {value: 1, writable: true, enumerable: true, configurable: true},
+        y: {value: 1, writable: true, enumerable: true, configrable: true},
+        r: {
+            get: function () {
+                return Math.sqrt(this.x*this.x + this.y*this.y)
+            },
+            enumerable: true,
+            configurable: true
+        }
+    });
+
+    Object.defineProperty(Object.prototype, "extend",
+            {
+                writable: true,
+                enumerable: false,
+                configurable: true,
+                value: function (o) {
+                    var names = Object.getOwnPropertyNames(o);
+                    for(var i = 0; i < names.length; i++){
+                        if(names[i] in this) continue;
+                        var desc = Object.getOwnPropertyDescriptor(o, names[i]);
+                        Object.defineProperty(this, names[i], desc);
+                    }
+                }
+            }
+    );
+    console.log(extend);
+
+</script>
+</body>
+</html>

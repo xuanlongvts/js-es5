@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property attribute</title>
+</head>
+<body>
+<h1>Property attribute</h1>
+<script language="javascript">
+    var p = {x: 1};
+    var o = Object.create(p);
+    console.log(p.isPrototypeOf(o));
+    console.log(Object.prototype.isPrototypeOf(o));
+</script>
+</body>
+</html>
