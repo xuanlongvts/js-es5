@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Closure</title>
+</head>
+<body>
+<h1>Closure</h1>
+<script type="text/javascript">
+	var createCounter = function(initial){
+		var counter = initial;
+
+		var increment = function(value){
+			if(!isFinite(value) || value < 1){
+				value = 1;
+			}
+
+			counter += value;
+		}
+
+		var get = function(){
+			return counter;
+		}
+
+		return {
+			incrementNongNo: increment,
+			getNongNo: get
+		}
+	}
+
+	var myCounter = createCounter(100);
+
+	console.log('myCounter: ', myCounter.getNongNo());
+	myCounter.incrementNongNo(5);
+	console.log('myCounter: ', myCounter.getNongNo());
+</script>
+</body>
+</html>

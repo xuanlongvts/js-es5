@@ -1,0 +1,35 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Scope</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h1>Scope</h1>
+        <script type="text/javascript">
+        	var foo = function(){
+        		var a = 3, b = 5;
+        		var bar = function(){
+        			var b = 7, c = 11;
+        			// At this point, a = 3, b = 7, c = 11
+
+        			a += b + c;
+        			// At this point, a = 21, b= 7, c = 11
+        		}
+        		// At this point, a = 3, b = 5, c is not defined (= undefined)
+        		console.log('a: ', a);
+        		console.log('b: ', b);
+        		console.log('c: ', typeof c);
+        		bar();
+        		// At this point, a = 21, b =5
+        		console.log('=======');
+        		console.log('a: ', a);
+        		console.log('b: ', b);
+        	}
+        	foo();
+        </script>
+    </body>
+</html>
